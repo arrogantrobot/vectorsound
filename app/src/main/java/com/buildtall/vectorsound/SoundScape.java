@@ -28,6 +28,8 @@ public class SoundScape {
         at = new AudioTrack(AudioManager.STREAM_MUSIC, 44100, AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_8BIT, 44100, AudioTrack.MODE_STREAM);
     }
 
+    public void setIterations(int iterations) { this.iterations = iterations; }
+
     public boolean isStopped() { return isStopped; }
 
     public void pause() {

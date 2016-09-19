@@ -9,7 +9,8 @@ import static java.lang.Math.sqrt;
 
 public class WeinerProcess {
     private static double getWeinerDouble(double t) {
-        return ((new Random()).nextGaussian() + t) % 256;
+        double answer = ((new Random()).nextGaussian() + t);
+        return answer > 70 ? (answer > 200 ? 200: answer) : 70;
     }
 
     public static byte[] getWeinerBytes(int numBytes, int initialValue) {

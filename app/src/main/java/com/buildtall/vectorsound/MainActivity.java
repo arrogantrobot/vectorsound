@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 public class MainActivity extends AppCompatActivity {
     Logger logger;
     SoundScape soundScape;
+    int ITERATIONS_PER_RUN = 10;
 
     private void togglePlay(View view){
         if (soundScape.isStopped()) {
@@ -31,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        soundScape = new SoundScape(ITERATIONS_PER_RUN);
+
         logger = Logger.getLogger("vectorSound");
         logger.info("startup");
         Button startStopButton = (Button) findViewById(R.id.startStop);
