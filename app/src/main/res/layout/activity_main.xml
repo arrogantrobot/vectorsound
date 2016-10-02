@@ -14,10 +14,43 @@
         android:id="@+id/startStop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:onClick="togglePlay"
-        app:layout_constraintVertical_bias="0.1"
-        app:layout_constraintHorizontal_bias="0.47" />
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:text="step size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        app:layout_constraintBottom_toTopOf="@+id/stepSize"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintRight_toLeftOf="@+id/stepSetButton"
+        android:layout_marginEnd="16dp" />
+
+    <Button
+        android:text="set"
+        android:id="@+id/stepSetButton"
+        android:layout_width="wrap_content"
+        android:layout_marginEnd="112dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/stepSize"
+        android:onClick="setStep"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:layout_width="52dp"
+        android:layout_height="47dp"
+        android:inputType="textPersonName"
+        android:text="0.1"
+        android:ems="10"
+        android:id="@+id/stepSize"
+        tools:layout_editor_absoluteY="141dp"
+        app:layout_constraintRight_toLeftOf="@+id/stepSetButton"
+        android:layout_marginEnd="32dp" />
 
 </android.support.constraint.ConstraintLayout>

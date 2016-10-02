@@ -1,24 +1,30 @@
 package com.buildtall.vectorsound;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-import static java.lang.Math.exp;
-import static java.lang.Math.sqrt;
-
 public class WeinerProcess {
-    private static double getWeinerDouble(double t) {
-        double answer = ((new Random()).nextGaussian() + t);
-        return answer > 70 ? (answer > 200 ? 200: answer) : 70;
+    private Random r = new Random();
+    private float step = 0.1f;
+
+    public void setStep(float step) {this.step = clamp(step);}
+
+    private float clamp(float d) {
+        if (d > 1.0) return 1.0f;
+        if (d < -1.0) return -1.0f;
+        return d;
     }
 
-    public static byte[] getWeinerBytes(int numBytes, int initialValue) {
-        byte[] answer = new byte[numBytes];
-        double value = (float)initialValue;
+    private float getWeinerFloat(float t) {
+        return clamp((((float)r.nextGaussian() * step) + t));
+    }
+
+    public float[] getWeinerFloats(int numBytes, float initialValue) {
+        if (numBytes <= 0) throw new RuntimeException("cannot produce zero or fewer bytes");
+        float[] answer = new float[numBytes];
+        float value = clamp(initialValue);
         for(int i = 0; i < numBytes; i++) {
-            value = getWeinerDouble(value);
-            answer[i] = (byte)Math.round(value);
+            value = getWeinerFloat(value);
+            answer[i] = value;
         }
         return answer;
     }

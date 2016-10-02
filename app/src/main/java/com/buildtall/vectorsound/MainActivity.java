@@ -1,9 +1,5 @@
 package com.buildtall.vectorsound;
 
-import android.media.AudioAttributes;
-import android.media.AudioFormat;
-import android.media.AudioManager;
-import android.media.AudioTrack;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,11 +10,10 @@ import java.util.logging.Logger;
 
 // heavy borrowing from https://stackoverflow.com/questions/6179392/audiotrack-in-streaming-mode-mode-streaming
 
-
 public class MainActivity extends AppCompatActivity {
     Logger logger;
     SoundScape soundScape;
-    int ITERATIONS_PER_RUN = 10;
+    int ITERATIONS_PER_RUN = 8000;
 
     private void togglePlay(View view){
         if (soundScape.isStopped()) {
@@ -59,4 +54,15 @@ public class MainActivity extends AppCompatActivity {
         logger.info("pause");
     }
 
+    public void setStep(View view) {
+        TextView stepSize = (TextView) findViewById(R.id.stepSize);
+        float step;
+        try {
+            step = Float.valueOf(stepSize.getText().toString());
+        } catch (NumberFormatException nfe) {
+            System.out.println("number format exception on casting step to float");
+            return;
+        }
+        soundScape.setStep(step);
+    }
 }
